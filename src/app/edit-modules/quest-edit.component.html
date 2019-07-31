@@ -1,1 +1,31 @@
-<h1>Edit module</h1>
+<button (click)="showDialog = !showDialog">New quest</button>
+<app-dialog [(visible)]="showDialog">
+    <h1>Create new quest</h1>
+    <div>
+            <label>Name:
+              <input  #questName/>
+            <br>
+            Category:
+              <input  #questCategory/>
+            <br>
+            Subcategory:
+              <input  #questSubcategory/>
+            <br>
+            Description:
+              <input #questDescription/>
+            </label>
+    </div>
+            <button (click)="add(questName.value, questCategory.value,
+            questSubcategory.value,questDescription.value);
+             questName.value='';questCategory.value='';
+             questSubcategory.value='';questDescription.value=''">save</button>
+            <button (click)="showDialog = !showDialog" class="btn">cancel</button>
+</app-dialog>
+
+<div *ngFor="let quest of quests">
+  <p>----------------</p>
+  {{quest.name}}<br>
+  {{quest.category}}<br>
+  {{quest.subcategory}}<br>
+  {{quest.description}}
+</div>
