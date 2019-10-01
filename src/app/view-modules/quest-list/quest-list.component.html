@@ -1,0 +1,28 @@
+<input type="text" class="form-control" placeholder="Search" [(ngModel)]="query" id="listSearch">
+
+<ol class="square">
+  
+ 
+   <li *ngFor="let quest of quests | LockFilter: query | slice: start:finish" 
+      [title]="quest.description">
+     
+      <span class="name"><b>Name:</b>
+        {{quest.name}} 
+      </span>
+      <span>Category:
+        {{quest.category}} 
+      </span>
+      <span>Subcategory:
+        {{quest.subcategory}}  
+      </span>
+      <span class="control">
+        <button>edit</button>
+        <button class="delete" (click)="delete(quest)">delete</button>
+      </span>
+     
+   </li>
+ 
+</ol>
+
+<button (click)="next()" [disabled]="i<finish">next</button>
+

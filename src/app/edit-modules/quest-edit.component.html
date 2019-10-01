@@ -1,31 +1,77 @@
 <button (click)="showDialog = !showDialog">New quest</button>
 <app-dialog [(visible)]="showDialog">
     <h1>Create new quest</h1>
-    <div>
-            <label>Name:
-              <input  #questName/>
-            <br>
-            Category:
-              <input  #questCategory/>
-            <br>
-            Subcategory:
-              <input  #questSubcategory/>
-            <br>
-            Description:
-              <input #questDescription/>
+     <!--       Имя            -->
+      <form  class="form" (ngSubmit)="onSubmited()" #questForm="ngForm">
+        <label for="questName"><span class="call">Name:</span>
+           <div class="form__field">
+              <input type="text" [(ngModel)]="quest.questName" name="questName" 
+              placeholder="Enter name" id="questName" #questName #questNamed="ngModel" required class="form-control"/>
+              
+           </div>
+              <div class="alert alert-danger" [hidden]="questNamed.valid || questNamed.pristine">
+               The field must be filled!
+               </div>   <br>
+        </label>  <br>
+                    <!--       категория              -->
+       <form [formGroup]="registrationForm" (ngSubmit)="onSubmited()">
+          <div class="form__fields">
+             <mat-form-field>
+                <mat-label>Choose category</mat-label>
+                   <mat-select required #questCategory  (change)="changeCategory($event)" 
+                   formControlName="categoryName" [(ngModel)]="soption" >
+                     <!--<mat-option value="none">None</mat-option>-->
+                     <mat-option *ngFor="let category of categorys" [value]="category.value">
+                     {{category.viewValue}}
+                     </mat-option>
+                   </mat-select>
+            </mat-form-field>
+                    
+              <div class="invalid-feedback" *ngIf="isSubmitted && categoryName.errors?.required">
+                  <sup>*</sup>Necessary choose category name!
+                </div>
+              </div>  
+              
+              <div class="form__fields">
+              <!--<div class="subc">-->
+                   <!--      подкатегория              -->
+              <mat-form-field>
+                  <mat-label>Choose Subcategory</mat-label>
+                  <mat-select required #questSubcategory (change)="changeSubcategory($event)"
+                   formControlName="subcategoryName" [(ngModel)]="option">
+                   <!--<mat-option value="none">None</mat-option>-->
+                    <mat-option *ngFor="let subcategory of subcategorys" [value]="subcategory.value">
+                      {{subcategory.viewValue}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+         
+              </div>
+              </form>
+              <!--      Описание             -->
+               
+            <label for="questDescription">
+               <span class="call">Description:</span>
+                <input class="form__field" [(ngModel)]="quest.questDescription" type="text"
+                 name="questDescription" placeholder="Enter description" id="questDescription"
+                 #questDescription #questDescriptionD="ngModel" required class="form-control"/>
+                  <div class="alert alert-danger" [hidden]="questDescriptionD.valid || questDescriptionD.pristine">
+                    The field must be filled!
+                  </div>
             </label>
-    </div>
-            <button (click)="add(questName.value, questCategory.value,
+          <!--       Кнопка          -->
+            <button type="submit" (click)="add(questName.value, questCategory.value,
             questSubcategory.value,questDescription.value);
              questName.value='';questCategory.value='';
-             questSubcategory.value='';questDescription.value=''">save</button>
-            <button (click)="showDialog = !showDialog" class="btn">cancel</button>
+             questSubcategory.value='';questDescription.value=''; 
+             showDialog = !showDialog; option=invalid; soption=invalid;
+             quest.questDescription=invalid;
+             quest.questName=invalid" class="btn" [disabled]="option === invalid ? true: false
+             || soption === invalid ? true: false || questForm.form.invalid" >
+             <span class="text">save</span></button>
+            <button (click)="showDialog = !showDialog; questName.value='';questCategory.value='';
+            questSubcategory.value='';questDescription.value=''" class="btn fd"><span class="text" >cancel</span></button>
+    </form> 
+    <br>
+        
 </app-dialog>
-
-<div *ngFor="let quest of quests">
-  <p>----------------</p>
-  {{quest.name}}<br>
-  {{quest.category}}<br>
-  {{quest.subcategory}}<br>
-  {{quest.description}}
-</div>

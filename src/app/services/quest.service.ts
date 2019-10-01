@@ -61,4 +61,30 @@ export class QuestService {
       return of(result as T);
     };
   }
+
+  //updateHero (hero: Hero): Observable<any> {
+    //return this.http.put(this.heroesUrl, hero, this.httpOptions).pipe(
+      //tap(_ => this.log(`updated hero id=${hero.id}`)),
+      //catchError(this.handleError<any>('updateHero'))
+    //);
+  //}
+
+  /*searchQuests(quest: Quest): Observable<Quest[]> {
+    if (!quest.trim()) {
+      // if not search term, return empty hero array.
+      return of([]);
+    }
+    return this.http.get(this.questsUrl, quest, httpOptions);
+    //return this.http.get<Quest[]>(`${this.questsUrl}/?name=${term}`);
+  }*/
+  
+  searchQuests(term: string): Observable<Quest[]> {
+    if (!term.trim()) {
+      // if not search term, return empty hero array.
+      return of([]);
+    }
+    return this.http.get<Quest[]>(`${this.questsUrl}/?name=${term}`).pipe(
+      catchError(this.handleError<Quest[]>('searchHeroes', []))
+    );
+  }
 }
