@@ -15,6 +15,8 @@ export class QuestListComponent implements OnInit {
   public search:any = '';
   Quest: any[] = [];
   
+  
+
   constructor(private questService: QuestService) {
 
    }
@@ -23,6 +25,7 @@ export class QuestListComponent implements OnInit {
     this.getQuests();
     this.start=0;
     this.finish=25;
+   
   }
   getQuests(): void {
     this.questService.getQuests()
@@ -36,5 +39,14 @@ export class QuestListComponent implements OnInit {
  next(){
   this.finish+=25;
   this.start+=25;
+
+
+ }
+ find(){
+   if(document.getElementById('proverka') == null){
+   document.getElementById('one').innerHTML='not found';
+   }
+   else
+   document.getElementById('one').innerHTML= null;
  }
 }

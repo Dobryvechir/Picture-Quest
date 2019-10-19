@@ -8,9 +8,7 @@ export interface Category {
   viewValue: string;
 }
 
-export interface Subcategory {
-  value: string;
-  viewValue: string;
+export interface Subcategory extends Category {
 }
 
 

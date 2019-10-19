@@ -31,21 +31,21 @@ span{
 
 .square {
     margin: 0;
-    counter-reset: li;
+    counter-reset: div;
     list-style: none;
     padding: 10px;
   }
-  .square li {
+  .square div {
     position: relative;
     margin: 0 0 10px 2em;
     padding: 4px 8px;
     border-top: 2px solid #787A77;
     transition: .3s linear;
   }
-  .square li:last-child {margin-bottom: 0;}
-  .square li:before {
-    content: counter(li);
-    counter-increment: li;
+  .square div:last-child {margin-bottom: 0;}
+  .square div:before {
+    content: counter(div);
+    counter-increment: div;
     position: absolute;
     top: -2px;
     left: -2em;
@@ -63,12 +63,18 @@ span{
     text-align: center;
     transition: .3s linear;
   }
-  .square li:hover {border-top: 2px solid #389F70;}
-  .square li:hover:before {
+  .square div:hover {border-top: 2px solid #389F70;}
+  .square div:hover:before {
     border: 2px solid #389F70;
     background: #98EABA;
   }
   input{
     padding: 5px;
     margin: 5px;
+  }
+  #one{
+    text-align: left;
+    color: red;
+    font-weight: bold;
+    margin: 10px;
   }
