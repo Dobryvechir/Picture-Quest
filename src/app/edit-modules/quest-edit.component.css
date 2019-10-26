@@ -1,13 +1,46 @@
-/* AppComponent's private CSS styles */
+
 h1 {
-  font-size: 1.2em;
-  color: #999;
-  margin-bottom: 0;
+  text-align: center;
+  font-size: 28px;
+  color: red;
+  margin-bottom: 10px;
 }
 h2 {
   font-size: 2em;
   margin-top: 0;
   padding-top: 0;
+}
+.qwe{
+ position: relative;
+ left:90px;
+}
+.qwer{
+  margin-right: 20px;
+}
+.fd{
+  margin-right: 35px;
+}
+.form__fields{
+  margin-top: 10px;
+  margin-left: 0;
+}
+
+.form__field{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.call{
+  
+  position:relative;
+  left:190px;
+  margin-top:20px;
+}
+.subc{
+  margin-left: 5px;
+  display: inline;
+}
+.text{
+  color: black;
 }
 nav a {
   padding: 5px 10px;
@@ -26,4 +59,58 @@ nav a:hover {
 }
 nav a.active {
   color: #039be5;
+}
+select {
+  width: 105px;
+  border-radius: 5px;
+}
+
+.form {
+  display: inline-block;
+  padding: 25px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 465px;
+}
+
+
+
+.form__error {
+  color: red;
+  text-align: left;
+  font-size: 12px;
+  display: block;
+  margin-top: 3px;
+  display: none;
+}
+
+.form input {
+  text-align: center;
+  outline: none;
+  display: block;
+  width: 400px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  padding-left: 20px;
+  margin-left: 8px;
+  box-sizing: border-box;
+}
+
+.form button {
+  width: 25%;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 2px;
+  border: 5;
+  background-color: #ccc;
+  color: #fff;
+}
+
+
+.ng-valid[required], .ng-valid.required{
+  border-left: 5px solid #42A948;
+}
+
+.ng-invalid.required{
+  border-left: 5px solid #a94442;
 }

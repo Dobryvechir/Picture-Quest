@@ -1,13 +1,13 @@
 .dialog {
     z-index: 1000;
-    position: fixed;
+    position: static;
     right: 0;
     left: 0;
     top: 20px;
     margin-right: auto;
     margin-left: auto;
     min-height: 200px;
-    width: 90%;
+    width: 100%;
     max-width: 520px;
     background-color: #fff;
     padding: 12px;
