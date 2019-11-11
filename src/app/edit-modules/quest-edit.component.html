@@ -1,6 +1,6 @@
 <button (click)="showDialog = !showDialog">New quest</button>
 <app-dialog [(visible)]="showDialog">
-    <h1>Create new quest</h1>
+    <span class="zagolovok">Create new quest</span>
                 <!--       Имя            -->
       <form  class="form" (ngSubmit)="onSubmited()" #questForm="ngForm">
         <div for="questName"><span class="call">Name:</span>
