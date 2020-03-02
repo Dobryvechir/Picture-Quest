@@ -15,20 +15,20 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class QuestService {
-  private questsUrl = window['questHost']+ '/api/v1/quest';  // URL to web api
+  private questsUrl = window['questHost'] + '/api/v1/quest';  // URL to web api
 
   constructor(
     private http: HttpClient) { }
 
-  getQuests (): Observable<Quest[]> {
-    return this.http.get<Quest[]>(this.questsUrl);   
+  getQuests(): Observable<Quest[]> {
+    return this.http.get<Quest[]>(this.questsUrl);
   }
 
   getQuestNo404<Data>(id: number): Observable<Quest> {
     const url = `${this.questsUrl}/?id=${id}`;
     return this.http.get<Quest[]>(url)
       .pipe(
-        map(quests => quests[0]), 
+        map(quests => quests[0]),
         tap(h => {
           const outcome = h ? `fetched` : `did not find`;
         }),
@@ -41,50 +41,26 @@ export class QuestService {
     return this.http.get<Quest>(url);
   }
 
-  addQuest (quest: Quest): Observable<Quest> {
+  addQuest(quest: Quest): Observable<Quest> {
     return this.http.post<Quest>(this.questsUrl, quest, httpOptions);
   }
 
-  deleteQuest (quest: Quest | number): Observable<Quest> {
+  deleteQuest(quest: Quest | number): Observable<Quest> {
     const id = typeof quest === 'number' ? Quest : quest.id;
     const url = `${this.questsUrl}/${id}`;
 
     return this.http.delete<Quest>(url, httpOptions);
   }
 
-  updateQuest (quest: Quest): Observable<any> {
+  updateQuest(quest: Quest): Observable<any> {
     return this.http.put(this.questsUrl, quest, httpOptions);
   }
-  private handleError<T> (operation = 'operation', result?: T) {
+  private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      console.error(error); 
+      console.error(error);
       return of(result as T);
     };
   }
 
-  //updateHero (hero: Hero): Observable<any> {
-    //return this.http.put(this.heroesUrl, hero, this.httpOptions).pipe(
-      //tap(_ => this.log(`updated hero id=${hero.id}`)),
-      //catchError(this.handleError<any>('updateHero'))
-    //);
-  //}
 
-  /*searchQuests(quest: Quest): Observable<Quest[]> {
-    if (!quest.trim()) {
-      // if not search term, return empty hero array.
-      return of([]);
-    }
-    return this.http.get(this.questsUrl, quest, httpOptions);
-    //return this.http.get<Quest[]>(`${this.questsUrl}/?name=${term}`);
-  }*/
-  
-  searchQuests(term: string): Observable<Quest[]> {
-    if (!term.trim()) {
-      // if not search term, return empty hero array.
-      return of([]);
-    }
-    return this.http.get<Quest[]>(`${this.questsUrl}/?name=${term}`).pipe(
-      catchError(this.handleError<Quest[]>('searchHeroes', []))
-    );
-  }
 }

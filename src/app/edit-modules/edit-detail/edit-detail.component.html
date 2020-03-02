@@ -1,0 +1,45 @@
+<section class="edit-detail">
+  <h2>Quest - {{quest.name | uppercase}} Details:</h2>
+  <div class="edit-main">
+
+
+
+    <form>
+      <div class="form-group wrapper">
+        <div class="edit-change">
+          <label> Change name:
+            <input type="text" [(ngModel)]="quest.name" placeholder="name" name="1" id="1" />
+          </label>
+        </div>
+        <div class="edit-change">
+          <label> Change category:
+            <input type="text" [(ngModel)]="quest.category" placeholder="category" name="3" id="2" />
+          </label>
+        </div>
+        <div class="edit-change">
+          <label> Change subcategory:
+            <input type="text" [(ngModel)]="quest.subcategory" placeholder="subcategory" name="2" id="3" />
+          </label>
+        </div>
+        <div class="edit-change textarea">
+          <label> <span>Change description:</span>
+            <textarea [(ngModel)]="quest.description" placeholder="description" name="4" id="4">
+          </textarea>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group download">
+        <label for="exampleFormControlFile1">Загрузить картинку </label>
+        <input type="file" class="form-control-file" id="exampleFormControlFile1">
+        <button>Save image</button>
+      </div>
+
+
+      <div class="knop">
+        <button (click)="goBack()" class="btn btn-primary back">Go Back</button>
+        <button (click)="save()" class="btn btn-primary save">Save</button>
+      </div>
+    </form>
+  </div>
+</section>
