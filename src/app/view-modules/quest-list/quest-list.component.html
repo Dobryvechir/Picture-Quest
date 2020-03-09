@@ -1,0 +1,120 @@
+<section class="mail-list">
+  <button (click)="showDialog = !showDialog" *ngIf="isCollapsed" (click)="toggleCollapse()"
+    class="btn btn-primary btn-lg create-btn">New quest</button>
+  <app-dialog [visible]=" showDialog">
+    <div class="texar">
+      <span class="banner-main">Create your quest</span>
+      <!--       Имя            -->
+      <form id="form" class="form" (ngSubmit)="onSubmited()" #questForm="ngForm">
+        <div for="questName"><span class="banner">Name:</span>
+          <div class="form__field">
+            <input type="text" id="menu-choice" [(ngModel)]="quest.questName" name="questName" placeholder="Enter name"
+              id="questName" #questName #questNamed="ngModel" required class="form-control" autocomplete="off" />
+
+          </div>
+          <div class="alert alert-danger" [hidden]="questNamed.valid || questNamed.pristine">
+            The field must be filled!
+          </div>
+        </div>
+        <!--       категория              -->
+        <div [formGroup]="registrationForm" class="menu-choice" id="menu-choice">
+          <div class="form__fields">
+            <mat-form-field>
+              <mat-label>Choose category</mat-label>
+              <mat-select required #questCategory (change)="changeCategory($event)" formControlName="categoryName"
+                [(ngModel)]="soption">
+                <mat-option *ngFor="let category of categorys" [value]="category.value">
+                  {{category.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <div class="invalid-feedback" *ngIf="isSubmitted && categoryName.errors?.required">
+              <sup>*</sup>Necessary choose category name!
+            </div>
+          </div>
+          <div class="form__fields">
+            <!--      подкатегория              -->
+            <mat-form-field>
+              <mat-label>Choose Subcategory</mat-label>
+              <mat-select required #questSubcategory (change)="changeSubcategory($event)"
+                formControlName="subcategoryName" [(ngModel)]="option">
+                <mat-option *ngFor="let subcategory of subcategorys" [value]="subcategory.value">
+                  {{subcategory.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+          </div>
+        </div>
+        <!--      Описание             -->
+        <div for="questDescription" class="form__field">
+          <span class="banner">Description:</span>
+          <input class="form__field" autocomplete="off" [(ngModel)]="quest.questDescription" type="text"
+            name="questDescription" placeholder="Enter description" id="questDescription" #questDescription
+            #questDescriptionD="ngModel" required class="form-control" />
+          <div class="alert alert-danger" [hidden]="questDescriptionD.valid || questDescriptionD.pristine">
+            The field must be filled!
+          </div>
+        </div>
+        <!--       Кнопка          -->
+        <div class="button-save-cancel">
+          <button id="submit" *ngIf="!isCollapsed" (click)="toggleCollapse()" type="submit" (click)="add(questName.value, questCategory.value,
+            questSubcategory.value,questDescription.value);
+             questName.value='';questCategory.value='';
+             questSubcategory.value='';questDescription.value=''; 
+             showDialog = !showDialog; option=invalid; soption=invalid;
+             quest.questDescription=invalid;
+             quest.questName=invalid" class="btn btn-primary btn-sm save-cancel-btn" [disabled]="option === invalid ? true: false
+             || soption === invalid ? true: false || questForm.form.invalid">
+            save</button>
+          <button *ngIf="!isCollapsed" (click)="toggleCollapse()" (click)="showDialog = !showDialog; questName.value='';questCategory.value='';
+            questSubcategory.value='';questDescription.value=''" class="btn btn-primary btn-sm save-cancel-btn">
+            cancel</button>
+        </div>
+      </form>
+    </div>
+
+
+
+  </app-dialog>
+
+
+
+  <div *ngIf="isCollapsed" class="content">
+    <!-- Не работает поиск-->
+    <input type="text" class="search-quests" placeholder="Search" [(ngModel)]="query" id="listSearch" (keyup)="find()">
+
+    <div class="square" id="square">
+      <div *ngFor="let quest of quests | LockFilter: query | slice: start:finish; let odd = odd; let even = even"
+        [ngClass]="{even:even, odd:odd}" id="proverka">
+        <span class="id">{{quest.id}}</span>
+        <span class="name"><strong>Name:</strong>
+          {{quest.name}}
+        </span>
+        <span class="category"><strong>Category:</strong>
+          {{quest.category}}
+        </span>
+        <span class="subcategory"><strong>Subcategory:</strong>
+          {{quest.subcategory}}
+        </span>
+        <button type="button" class="btn btn-dark decription-btn" placement="right" ngbPopover="{{quest.description}}"
+          popoverTitle="Decription" triggers="mouseenter:mouseleave">
+          Description
+
+        </button>
+        <span class="control">
+          <a routerLink="/edit/{{quest.id}}" class="btn btn-primary edit-delete-btn">edit</a>
+          <a (click)="delete(quest)" class="btn btn-primary edit-delete-btn">delete</a>
+        </span>
+
+      </div>
+    </div>
+
+
+    <button (click)="next()" [disabled]="this.finish>=questLength"
+      class="btn btn-primary btn-sm next-prev-btn">next</button>
+    <button (click)="previous()" [disabled]="this.start<5"
+      class="btn btn-primary btn-sm next-prev-btn previous">prev.</button>
+  </div>
+</section>

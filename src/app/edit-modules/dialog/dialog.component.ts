@@ -21,15 +21,15 @@ export class DialogComponent implements OnInit {
   @Input() closeble = false;
   @Input() visible: boolean;
   @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
-  
+
   constructor() { }
 
   ngOnInit() {
-    close();  {
+    close(); {
       this.visible = false;
       this.visibleChange.emit(this.visible);
     };
   }
-  
+
 
 }

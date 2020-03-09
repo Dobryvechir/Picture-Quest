@@ -1,0 +1,66 @@
+/*кнопки модального окна*/
+.create-btn{
+    margin: 10px;
+}
+.button-save-cancel{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+.button-save-cancel .save-cancel-btn{
+    font-size: 1.7rem;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+.decription-btn{
+    position: absolute;
+    left: 60%;
+}
+
+
+
+/*кнопки вівода квестов */
+.edit-delete-btn{
+    margin-left: 10px;
+    position: relative;
+    left:10px;
+    color:white;
+    background: rgb(0, 38, 255);
+  } 
+  .edit-delete-btn:hover{
+      background-color: rgb(0, 255, 255);
+      color: #000;
+  }
+  .edit-delete-btn:last-child{
+      background: rgb(27, 27, 126);
+      margin-right: 0px;
+      color:white;
+  }
+  .edit-delete-btn:last-child:hover{
+      background: rgb(255, 0, 0);
+      color: white;
+      border: none;
+  }
+
+  /* КНОПКИ NEXT PREVIEW */
+
+.next-prev-btn{
+    width: 100px;
+    font-size: 1.475rem;
+    margin-left: 10px;
+    margin-top: 5px;
+    margin-right: 10px;
+}
+.next-prev-btn{
+    background-image: url(./view-modules/quest-list/next.png);
+    background-repeat: no-repeat;
+    background-position: 98% 50%;
+    padding-left: 0px;
+}
+.previous{
+    background-image: url(./view-modules/quest-list/back1.png);
+    background-repeat: no-repeat;
+    background-position: 4% 50%;
+    padding-left: 24px ;
+}
