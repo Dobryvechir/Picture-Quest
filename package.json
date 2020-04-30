@@ -25,7 +25,7 @@
     "bootstrap": "^4.0.0",
     "core-js": "^2.5.4",
     "dv-chc-components": "^1.0.0",
-    "jquery": "^1.12.4",
+    "jquery": "^3.5.0",
     "popper.js": "^1.15.0",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
